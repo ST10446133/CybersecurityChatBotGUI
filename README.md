@@ -1,3 +1,5 @@
+Cybersecurity ChatBot GUI
+
 A WPF-based Cybersecurity Awareness Chatbot designed to educate users on best practices for online safety. This interactive assistant supports task tracking, reminders, and educational mini-games, making cybersecurity awareness engaging and practical.
 
 Features
@@ -17,13 +19,18 @@ NAudio (for audio features)
 Regex and NLP (basic tokenization and keyword detection)
 
 Project Structure
+The solution consists of a single WPF project with the following key files:
 CybersecurityChatBotGUI.sln
-│
-├── CybersecurityChatBotGUI/
-│   ├── MainWindow.xaml           # UI layout (XAML)
-│   ├── MainWindow.xaml.cs       # Code-behind logic (chat logic, task manager, etc.)
-│   ├── CyberChatBot.cs          # Core chatbot logic (responses, NLP)
-│   └── Assets/                  # Audio files, logo images, etc.
+The main Visual Studio solution file.
+CybersecurityChatBotGUI/ (Project Folder)
+MainWindow.xaml
+Defines the graphical user interface using XAML.
+MainWindow.xaml.cs
+Contains the code-behind logic for handling user interaction, task management, and chatbot communication.
+CyberChatBot.cs
+Handles the core chatbot logic, including responses, keyword detection, and basic NLP.
+Assets/
+Contains supporting resources such as logo images and audio files.
 
 How to Run
 Open the solution CybersecurityChatBotGUI.sln in Visual Studio 2022 or newer.
