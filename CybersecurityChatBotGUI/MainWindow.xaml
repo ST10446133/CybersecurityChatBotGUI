@@ -1,0 +1,115 @@
+﻿<Window x:Class="CybersecurityAwarenessBot.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Cybersecurity Awareness Bot" Height="650" Width="900" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left side: Logo + Chat -->
+        <StackPanel Grid.Column="0" Margin="5">
+            <TextBlock Text="C.A.B - Cybersecurity Awareness Bot" FontWeight="Bold" FontSize="18" Foreground="DarkMagenta" TextAlignment="Center"/>
+            <TextBox Name="AsciiLogoTextBox" FontFamily="Consolas" FontSize="14" 
+                     TextWrapping="Wrap" IsReadOnly="True" Height="200" Margin="0,5" Background="Black" Foreground="Magenta"
+                     VerticalScrollBarVisibility="Auto" />
+            <TextBlock Text="Chat Interface" FontWeight="Bold" FontSize="16" Margin="0,10,0,5"/>
+
+            <TextBox Name="ChatDisplayTextBox" Height="270" IsReadOnly="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" FontSize="14" Background="#f0f0f0"/>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBox Name="ChatInputTextBox" Width="350" Height="30" Margin="0,0,5,0" FontSize="14" KeyDown="ChatInputTextBox_KeyDown"/>
+                <Button Name="ChatSendButton" Width="75" Height="30" Content="Send" Click="ChatSendButton_Click"/>
+                <Button Content="Start Quiz" Width="86" Height="30" Click="StartQuizButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Right side: Task Assistant -->
+        <StackPanel Grid.Column="1" Margin="5">
+            <TextBlock Text="Task Assistant" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+
+            <!-- Task Title with placeholder -->
+            <Grid Height="30" Margin="0,0,0,5">
+                <TextBox Name="TaskTitleTextBox" FontSize="14" />
+                <TextBlock Text="Task Title" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text.Length, ElementName=TaskTitleTextBox}" Value="0">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Text.Length, ElementName=TaskTitleTextBox}" Value="1">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+
+            <!-- Task Description with placeholder -->
+            <Grid Height="60" Margin="0,0,0,5">
+                <TextBox Name="TaskDescTextBox" FontSize="14" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+                <TextBlock Text="Task Description" Foreground="Gray" Margin="5,3,0,0" VerticalAlignment="Top" IsHitTestVisible="False">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text.Length, ElementName=TaskDescTextBox}" Value="0">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Text.Length, ElementName=TaskDescTextBox}" Value="1">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5" VerticalAlignment="Center">
+                <TextBlock Text="Reminder Date:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <DatePicker Name="TaskReminderDatePicker" Width="126" Margin="0,0,5,0"/>
+                <TextBlock Text="Time:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <ComboBox Name="TaskReminderTimeComboBox" Width="70">
+                    <!-- Times from 00:00 to 23:00 -->
+                    <ComboBoxItem Content="00:00"/>
+                    <ComboBoxItem Content="01:00"/>
+                    <ComboBoxItem Content="02:00"/>
+                    <ComboBoxItem Content="03:00"/>
+                    <ComboBoxItem Content="04:00"/>
+                    <ComboBoxItem Content="05:00"/>
+                    <ComboBoxItem Content="06:00"/>
+                    <ComboBoxItem Content="07:00"/>
+                    <ComboBoxItem Content="08:00"/>
+                    <ComboBoxItem Content="09:00"/>
+                    <ComboBoxItem Content="10:00"/>
+                    <ComboBoxItem Content="11:00"/>
+                    <ComboBoxItem Content="12:00"/>
+                    <ComboBoxItem Content="13:00"/>
+                    <ComboBoxItem Content="14:00"/>
+                    <ComboBoxItem Content="15:00"/>
+                    <ComboBoxItem Content="16:00"/>
+                    <ComboBoxItem Content="17:00"/>
+                    <ComboBoxItem Content="18:00"/>
+                    <ComboBoxItem Content="19:00"/>
+                    <ComboBoxItem Content="20:00"/>
+                    <ComboBoxItem Content="21:00"/>
+                    <ComboBoxItem Content="22:00"/>
+                    <ComboBoxItem Content="23:00"/>
+                </ComboBox>
+            </StackPanel>
+
+            <Button Content="Add Task" Width="100" Height="30" Click="AddTaskButton_Click" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Tasks:" FontWeight="SemiBold" Margin="0,10,0,5"/>
+            <ListBox Name="TaskListBox" Height="241" SelectionMode="Single" FontSize="14"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <Button Content="Mark Completed" Width="110" Height="30" Click="MarkCompletedButton_Click" Margin="0,0,5,0"/>
+                <Button Content="Delete Task" Width="90" Height="30" Click="DeleteTaskButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
